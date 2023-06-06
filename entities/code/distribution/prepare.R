@@ -24,6 +24,7 @@ for (region in names(regions)) {
     entities$district <- unname(districts[substring(entities$geoid, 1, 5)])
     entities$type <- unname(rurality[entities$geoid])
   }
+  entities$region_type[entities$region_type == "health district"] <- "district"
   colnames(entities)[3] <- "name"
   entities$name <- sub(",.*$", "", entities$name)
   entities$region_type <- gsub(" ", "_", entities$region_type, fixed = TRUE)

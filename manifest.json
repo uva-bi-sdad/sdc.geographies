@@ -3,8 +3,8 @@
   "measure_not_found": [
     "/home/runner/work/sdc.geographies_dev/sdc.geographies_dev/VA/State Geographies/Health Districts/2020/data/distribution/va_ct_to_hd_crosswalk.csv"
   ],
-  "count": 182,
-  "utc_audited": "2023-06-05 20:47:17",
+  "count": 189,
+  "utc_audited": "2023-06-06 11:54:33",
   "data": [
     {
       "name": "02_prepare.R",
@@ -125,6 +125,48 @@
       "path": "US/Census Geographies/County/2010/data/distribution/README",
       "md5": "fe2eadde21d9fa6bb55ac307f3aa1ef0",
       "size": 29
+    },
+    {
+      "name": "prepare.R",
+      "path": "entities/code/distribution/prepare.R",
+      "md5": "17f7844a4d6f81b4fde134442111aec7",
+      "size": 2032
+    },
+    {
+      "name": "temp",
+      "path": "entities/docs/distribution/temp",
+      "md5": "d41d8cd98f00b204e9800998ecf8427e",
+      "size": 0
+    },
+    {
+      "name": "DC.json",
+      "path": "entities/data/distribution/DC.json",
+      "md5": "a46725307b93339cd1055479322c52c5",
+      "size": 53
+    },
+    {
+      "name": "MD.json",
+      "path": "entities/data/distribution/MD.json",
+      "md5": "5fbd298ab1bfaed735d01526a33344e6",
+      "size": 862
+    },
+    {
+      "name": "US.json",
+      "path": "entities/data/distribution/US.json",
+      "md5": "79b864d8166058dfb0f1e56c56e7ff2f",
+      "size": 110544
+    },
+    {
+      "name": "VA.json",
+      "path": "entities/data/distribution/VA.json",
+      "md5": "c64ad0d759bf9c8dac8307710936cb13",
+      "size": 144179
+    },
+    {
+      "name": "NCR.json",
+      "path": "entities/data/distribution/NCR.json",
+      "md5": "66afffd0874bdb7a8571758e02d91093",
+      "size": 22866
     },
     {
       "name": "02_prepare.R",
