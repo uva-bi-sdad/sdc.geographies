@@ -1,3 +1,4 @@
+# load extra metadata (health district associations and rurality)
 districts <- read.csv(
   "VA/State Geographies/Health Districts/2020/data/distribution/va_ct_to_hd_crosswalk.csv"
 )
@@ -5,6 +6,7 @@ districts <- structure(districts$hd_geoid, names = districts$ct_geoid)
 rurality <- read.csv("entities/data/original/rurality_va.csv")
 rurality <- structure(rurality$type, names = rurality$ID)
 
+# find all map files, and split into states
 files <- grep(
   "distribution", list.files(".", "geojson$", recursive = TRUE),
   fixed = TRUE, value = TRUE
@@ -12,6 +14,7 @@ files <- grep(
 regions <- split(files, sub("/.*$", "", files))
 regions <- regions[names(regions) != "NCR"]
 
+# get features from maps, then attach extra metadata and save as JSON
 for (region in names(regions)) {
   entities <- do.call(rbind, lapply(
     regions[[region]],
@@ -23,6 +26,8 @@ for (region in names(regions)) {
     entities <- entities[entities$region_type != "block group", ]
     entities$district <- unname(districts[substring(entities$geoid, 1, 5)])
     entities$type <- unname(rurality[entities$geoid])
+    su <- is.na(entities$type)
+    entities$type[su] <- unname(rurality[substring(entities$geoid[su], 1, 5)])
   }
   entities$region_type[entities$region_type == "health district"] <- "district"
   colnames(entities)[3] <- "name"
@@ -39,6 +44,7 @@ for (region in names(regions)) {
   )), paste0("entities/data/distribution/", region, ".json"), auto_unbox = TRUE)
 }
 
+# combine states for National Capital Region
 ncr_entities <- unlist(lapply(
   paste0("entities/data/distribution/", c("DC", "MD", "VA"), ".json"), jsonlite::read_json
 ), recursive = FALSE)
